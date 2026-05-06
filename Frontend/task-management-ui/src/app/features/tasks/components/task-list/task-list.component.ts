@@ -7,7 +7,7 @@
   ViewChild,
   effect,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -15,73 +15,58 @@ import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatCardModule } from '@angular/material/card';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { PageShellComponent } from '../../../../shared/components/page-shell/page-shell.component';
 import { selectAllTasks, selectTasksLoading } from '../../store/tasks.selectors';
-import { selectAllStatuses } from '../../store/statuses/statuses.selectors';
+import { StatusesApiService } from '../../../../core/api/statuses-api.service';
 
 import { loadTasks, updateTaskStatus } from '../../store/tasks.actions';
 import { Task } from '../../../../core/models/task';
 import { parseMetadata } from '../../../../core/utils/metadata.utils';
-import { StatusBadgeComponent } from '../../../../shared/components/status-badge/status-badge';
+import { StatusBadgeComponent } from '../../../../shared/components/status-badge/status-badge.component';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
   imports: [
-    CommonModule,
+    DatePipe,
     ReactiveFormsModule,
     MatSelectModule,
     MatTableModule,
-    MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatCardModule,
     MatSortModule,
     StatusBadgeComponent,
+    PageShellComponent,
   ],
   template: `
-    <div class="page-container">
-      <mat-card class="table-card">
-        <mat-card-content>
-          <div class="action-bar">
-            <div class="filters">
-              <mat-form-field appearance="outline" subscriptSizing="dynamic">
-                <mat-label>Status</mat-label>
-                <mat-select [formControl]="statusFilter">
-                  <mat-option [value]="null">All Statuses</mat-option>
-                  @for (s of statuses(); track s.id) {
-                    <mat-option [value]="s.id">{{ s.name }}</mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="actions">
-              <button mat-raised-button class="btn-create" (click)="goToNewTask()">
-                <mat-icon>add_task</mat-icon> New Task
-              </button>
-            </div>
-          </div>
-
-          @if (loading()) {
-            <div class="spinner-wrapper"><mat-spinner diameter="48" /></div>
+    <app-page-shell [loading]="loading()">
+      <mat-form-field pageStart appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Status</mat-label>
+        <mat-select [formControl]="statusFilter">
+          <mat-option [value]="null">All Statuses</mat-option>
+          @for (s of statuses(); track s.id) {
+            <mat-option [value]="s.id">{{ s.name }}</mat-option>
           }
+        </mat-select>
+      </mat-form-field>
+      <button pageEnd mat-raised-button class="btn-create" (click)="goToNewTask()">
+        <mat-icon>add_task</mat-icon> New Task
+      </button>
 
-          <table
-            mat-table
-            matSort
-            [dataSource]="dataSource"
-            class="task-table mat-elevation-z2"
-            [style.display]="loading() ? 'none' : ''"
-          >
+      <table pageContent
+        mat-table
+        matSort
+        [dataSource]="dataSource"
+        class="task-table mat-elevation-z2"
+      >
             <ng-container matColumnDef="title">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
               <td mat-cell *matCellDef="let task">{{ task.title }}</td>
@@ -145,38 +130,11 @@ import { StatusBadgeComponent } from '../../../../shared/components/status-badge
             <tr class="mat-row" *matNoDataRow>
               <td class="mat-cell no-data" [attr.colspan]="columns.length">No tasks found.</td>
             </tr>
-          </table>
-        </mat-card-content>
-      </mat-card>
-    </div>
+      </table>
+    </app-page-shell>
   `,
   styles: [
     `
-      .page-container {
-        padding: 24px;
-      }
-      .table-card {
-        border-radius: 8px;
-      }
-      .action-bar {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 12px;
-        padding: 8px 0 16px;
-      }
-      .filters {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      .actions {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-        padding-top: 4px;
-      }
       .task-table {
         width: 100%;
       }
@@ -185,16 +143,6 @@ import { StatusBadgeComponent } from '../../../../shared/components/status-badge
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-      }
-      .spinner-wrapper {
-        display: flex;
-        justify-content: center;
-        padding: 48px;
-      }
-      .no-data {
-        text-align: center;
-        padding: 32px;
-        color: #888;
       }
 
       /* Advance status button */
@@ -277,11 +225,12 @@ import { StatusBadgeComponent } from '../../../../shared/components/status-badge
 export class TaskListComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
+  private readonly statusesApi = inject(StatusesApiService);
   private readonly destroy$ = new Subject<void>();
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  readonly statuses = toSignal(this.store.select(selectAllStatuses), { initialValue: [] });
+  readonly statuses = toSignal(this.statusesApi.statuses$, { initialValue: [] });
   readonly columns = ['title', 'description', 'user', 'status', 'createdAt', 'actions'];
   readonly statusFilter = new FormControl<number | null>(null);
   readonly tasks = toSignal(this.store.select(selectAllTasks), { initialValue: [] });

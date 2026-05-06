@@ -37,5 +37,5 @@ export const usersReducer = createReducer(
   )
 );
 
-// Export entity selectors (selectAll, selectIds, selectEntities, selectTotal)
-export const { selectAll, selectEntities } = adapter.getSelectors();
+// Export entity selectors used by users.selectors.ts
+export const { selectAll } = adapter.getSelectors();

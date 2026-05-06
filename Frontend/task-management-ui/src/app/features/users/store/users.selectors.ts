@@ -7,4 +7,4 @@ const selectUsersState = createFeatureSelector<UsersState>('users');
 // Components subscribe to these; they never touch the state directly.
 export const selectAllUsers = createSelector(selectUsersState, selectAll);
 export const selectUsersLoading = createSelector(selectUsersState, (s) => s.loading);
-export const selectUsersError = createSelector(selectUsersState, (s) => s.error);
+

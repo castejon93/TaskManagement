@@ -1,7 +1,7 @@
 import { HttpContextToken, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { LoadingService } from '../services/loading';
+import { LoadingService } from '../services/loading.service';
 
 /**
  * Set this token to `true` on any request that manages its own loading state

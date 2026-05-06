@@ -1,3 +1,27 @@
+// ── Toolbar nav ──────────────────────────────────────────────────────
+.toolbar-spacer { flex: 1; }
+.toolbar-nav { display: flex; gap: 4px; margin-right: 16px; }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+  mat-icon { font-size: 18px; height: 18px; width: 18px; }
+  &:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  &.nav-active { background: rgba(255,255,255,0.15); color: #fff; }
+}
+.toolbar-version { font-size: 12px; opacity: 0.7; letter-spacing: 0.05em; }
+.app-footer {
+  position: fixed; bottom: 12px; right: 16px;
+  font-size: 12px; color: #8b949e; pointer-events: none; z-index: 100;
+}
+
 // ── Global notification banner ────────────────────────────────────────
 .app-notification {
   position: fixed;

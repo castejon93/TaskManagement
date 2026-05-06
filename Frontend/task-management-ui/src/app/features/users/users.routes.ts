@@ -11,8 +11,6 @@ export const USERS_ROUTES: Routes = [
       provideState('users', usersReducer),
       provideEffects(UsersEffects)
     ],
-    loadComponent: () =>
-      import('./users-shell.component').then(m => m.UsersShellComponent),
     children: [
       {
         path: '',

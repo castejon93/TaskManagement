@@ -1,7 +1,7 @@
 import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { NotificationService } from '../services/notification';
+import { NotificationService } from '../services/notification.service';
 
 // Functional interceptor (Angular 17+ style — no class needed).
 // Catches all HTTP errors and shows a snackbar notification.

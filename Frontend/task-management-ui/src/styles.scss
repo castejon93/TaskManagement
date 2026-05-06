@@ -146,6 +146,9 @@ html, body {
 .btn-cancel.mat-mdc-raised-button:not(:disabled) { background-color: #b91c1c !important; color: #ffffff !important; }
 .btn-cancel.mat-mdc-raised-button:not(:disabled):hover { background-color: #dc2626 !important; }
 
+// ── Table empty state ─────────────────────────────────────────────────
+.no-data { text-align: center; padding: 32px; color: #888; }
+
 // ── Done pill (dark-mode friendly) ────────────────────────────────────
 .done-pill {
   background-color: rgba(63, 185, 80, 0.15) !important;

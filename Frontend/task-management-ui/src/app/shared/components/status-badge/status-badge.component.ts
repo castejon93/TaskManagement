@@ -1,9 +1,9 @@
-import { Component, Input, computed, signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'app-status-badge',
   standalone: true,
-  template: `<span class="status-badge" [class]="badgeClass()">{{ status }}</span>`,
+  template: `<span class="status-badge" [class]="badgeClass()">{{ status() }}</span>`,
   styles: [`
     .status-badge {
       display: inline-block;
@@ -20,16 +20,13 @@ import { Component, Input, computed, signal } from '@angular/core';
   `]
 })
 export class StatusBadgeComponent {
-  private readonly _status = signal<string>('');
-
-  @Input() set status(value: string) { this._status.set(value); }
-  get status(): string { return this._status(); }
+  readonly status = input('');
 
   readonly badgeClass = computed(() => {
-    switch (this._status()) {
-      case 'Pending':    return 'status-badge status-pending';
-      case 'InProgress': return 'status-badge status-inprogress';
-      case 'Done':       return 'status-badge status-done';
+    switch (this.status()) {
+      case 'Pending':     return 'status-badge status-pending';
+      case 'In Progress': return 'status-badge status-inprogress';
+      case 'Done':        return 'status-badge status-done';
       default:           return 'status-badge';
     }
   });

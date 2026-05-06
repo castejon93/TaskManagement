@@ -5,18 +5,14 @@ import { tasksReducer } from './store/tasks.reducer';
 import { TasksEffects } from './store/tasks.effects';
 import { usersReducer } from '../users/store/users.reducer';
 import { UsersEffects } from '../users/store/users.effects';
-import { statusesReducer } from './store/statuses/statuses.reducer';
-import { StatusesEffects } from './store/statuses/statuses.effects';
 
 export const TASKS_ROUTES: Routes = [
   {
     path: '',
-    // Register tasks + users + statuses NgRx slices for the whole feature subtree.
     providers: [
       provideState('tasks', tasksReducer),
       provideState('users', usersReducer),
-      provideState('statuses', statusesReducer),
-      provideEffects(TasksEffects, UsersEffects, StatusesEffects),
+      provideEffects(TasksEffects, UsersEffects),
     ],
     // Shell component that holds <router-outlet> for child routes.
     loadComponent: () => import('./tasks.component').then((m) => m.TasksComponent),
@@ -25,7 +21,7 @@ export const TASKS_ROUTES: Routes = [
         // Default child — dashboard with task table and filters.
         path: '',
         loadComponent: () =>
-          import('./components/task-list/list.component').then((m) => m.TaskListComponent),
+          import('./components/task-list/task-list.component').then((m) => m.TaskListComponent),
       },
       {
         // Create task form — navigated to via the "New Task" button.

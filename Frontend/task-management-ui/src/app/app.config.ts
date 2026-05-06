@@ -6,8 +6,8 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
-import { errorInterceptor } from './core/interceptors/error';
-import { loadingInterceptor } from './core/interceptors/loading';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {

@@ -3,7 +3,7 @@ import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Task, CreateTaskRequest, UpdateTaskStatusRequest, TaskFilters } from '../models/task';
-import { SKIP_LOADING } from '../interceptors/loading';
+import { SKIP_LOADING } from '../interceptors/loading.interceptor';
 
 @Injectable({ providedIn: 'root' })
 export class TasksApiService {

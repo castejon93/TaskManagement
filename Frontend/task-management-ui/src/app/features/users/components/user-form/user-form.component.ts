@@ -1,24 +1,24 @@
-﻿import { Component, inject, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+﻿import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
 import { Actions, ofType } from '@ngrx/effects';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { createUser, createUserSuccess } from '../../store/users.actions';
+import { FormActionsComponent } from '../../../../shared/components/form-actions/form-actions.component';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
   imports: [
-    CommonModule, ReactiveFormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule, MatInputModule,
-    MatButtonModule, MatIconModule, MatCardModule,
+    MatIconModule, MatCardModule,
+    FormActionsComponent,
   ],
   template: `
     <div class="form-container">
@@ -50,28 +50,23 @@ import { createUser, createUserSuccess } from '../../store/users.actions';
               }
             </mat-form-field>
 
-            <div class="form-actions">
-              <button mat-raised-button class="btn-cancel" type="button" (click)="cancel()">
-                <mat-icon>arrow_back</mat-icon> Cancel
-              </button>
-              <button mat-raised-button class="btn-create"
-                type="submit" [disabled]="form.invalid">
-                <mat-icon>person_add</mat-icon> Create User
-              </button>
-            </div>
+            <app-form-actions
+              submitLabel="Create User"
+              submitIcon="person_add"
+              [disabled]="form.invalid"
+              (cancelled)="cancel()" />
           </form>
         </mat-card-content>
       </mat-card>
     </div>
   `,
-  styles: [`.form-container{padding:24px;max-width:480px;margin:0 auto}.form{display:flex;flex-direction:column;gap:16px}.form-actions{display:flex;justify-content:flex-end;gap:8px}.mat-mdc-card-header{padding-bottom:0!important}.mat-mdc-card-content{padding-top:12px!important}`]
+  styles: [`.form-container{padding:24px;max-width:480px;margin:0 auto}.form{display:flex;flex-direction:column;gap:16px}.mat-mdc-card-header{padding-bottom:0!important}.mat-mdc-card-content{padding-top:12px!important}`]
 })
-export class UserFormComponent implements OnDestroy {
+export class UserFormComponent {
   private readonly store    = inject(Store);
   private readonly actions$ = inject(Actions);
   private readonly router   = inject(Router);
   private readonly fb       = inject(FormBuilder);
-  private readonly destroy$ = new Subject<void>();
 
   readonly form = this.fb.group({
     name:  ['', [Validators.required, Validators.maxLength(100)]],
@@ -80,7 +75,7 @@ export class UserFormComponent implements OnDestroy {
 
   constructor() {
     // Navigate back to the dashboard when user is created successfully.
-    this.actions$.pipe(ofType(createUserSuccess), takeUntil(this.destroy$))
+    this.actions$.pipe(ofType(createUserSuccess), takeUntilDestroyed())
       .subscribe(() => this.router.navigate(['/users']));
   }
 
@@ -90,6 +85,4 @@ export class UserFormComponent implements OnDestroy {
   }
 
   cancel(): void { this.router.navigate(['/users']); }
-
-  ngOnDestroy(): void { this.destroy$.next(); this.destroy$.complete(); }
 }

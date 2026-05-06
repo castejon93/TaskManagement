@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TasksApiService } from '../../../core/api/tasks-api';
-import { NotificationService } from '../../../core/services/notification';
+import { TasksApiService } from '../../../core/api/tasks-api.service';
+import { NotificationService } from '../../../core/services/notification.service';
 import * as TasksActions from './tasks.actions';
 
 @Injectable()

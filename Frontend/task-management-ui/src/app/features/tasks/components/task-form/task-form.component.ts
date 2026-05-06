@@ -1,5 +1,4 @@
-﻿import { Component, inject, OnDestroy, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+﻿import { Component, inject, signal } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -10,8 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Actions, ofType } from '@ngrx/effects';
-import { Subject, takeUntil } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -22,12 +20,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { selectAllUsers } from '../../../users/store/users.selectors';
 import { createTask, createTaskSuccess } from '../../store/tasks.actions';
 import { serializeMetadata } from '../../../../core/utils/metadata.utils';
+import { FormActionsComponent } from '../../../../shared/components/form-actions/form-actions.component';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -36,6 +34,7 @@ import { serializeMetadata } from '../../../../core/utils/metadata.utils';
     MatIconModule,
     MatCardModule,
     MatExpansionModule,
+    FormActionsComponent,
   ],
   template: `
     <div class="form-container">
@@ -62,7 +61,7 @@ import { serializeMetadata } from '../../../../core/utils/metadata.utils';
                 matInput
                 formControlName="description"
                 rows="3"
-                placeholder="Optional task description"
+                placeholder="Description"
               ></textarea>
             </mat-form-field>
 
@@ -111,14 +110,11 @@ import { serializeMetadata } from '../../../../core/utils/metadata.utils';
               </div>
             </mat-expansion-panel>
 
-            <div class="form-actions">
-              <button mat-raised-button class="btn-cancel" type="button" (click)="cancel()">
-                <mat-icon>arrow_back</mat-icon> Cancel
-              </button>
-              <button mat-raised-button class="btn-create" type="submit" [disabled]="form.invalid">
-                <mat-icon>add_task</mat-icon> Create Task
-              </button>
-            </div>
+            <app-form-actions
+              submitLabel="Create Task"
+              submitIcon="add_task"
+              [disabled]="form.invalid"
+              (cancelled)="cancel()" />
           </form>
         </mat-card-content>
       </mat-card>
@@ -135,11 +131,6 @@ import { serializeMetadata } from '../../../../core/utils/metadata.utils';
         display: flex;
         flex-direction: column;
         gap: 16px;
-      }
-      .form-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 8px;
       }
       .mat-mdc-card-header {
         padding-bottom: 0 !important;
@@ -191,12 +182,11 @@ import { serializeMetadata } from '../../../../core/utils/metadata.utils';
     `,
   ],
 })
-export class TaskFormComponent implements OnDestroy {
+export class TaskFormComponent {
   private readonly store = inject(Store);
   private readonly actions$ = inject(Actions);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
-  private readonly destroy$ = new Subject<void>();
 
   readonly users = toSignal(this.store.select(selectAllUsers), { initialValue: [] });
 
@@ -212,7 +202,7 @@ export class TaskFormComponent implements OnDestroy {
 
   constructor() {
     this.actions$
-      .pipe(ofType(createTaskSuccess), takeUntil(this.destroy$))
+      .pipe(ofType(createTaskSuccess), takeUntilDestroyed())
       .subscribe(() => this.router.navigate(['/tasks']));
   }
 
@@ -246,10 +236,5 @@ export class TaskFormComponent implements OnDestroy {
 
   cancel(): void {
     this.router.navigate(['/tasks']);
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }
