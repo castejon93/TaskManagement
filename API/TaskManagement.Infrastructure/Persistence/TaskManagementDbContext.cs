@@ -14,7 +14,6 @@ public class TaskManagementDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Apply all IEntityTypeConfiguration classes in this assembly automatically.
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TaskManagementDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
     }

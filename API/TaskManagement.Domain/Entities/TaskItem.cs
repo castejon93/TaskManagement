@@ -10,11 +10,9 @@ public class TaskItem
     public string? Description { get; private set; }
     public int StatusId { get; private set; }     
     public int UserId { get; private set; }
-    public string? AdditionalInfo { get; private set; }   // JSON column
+    public string? AdditionalInfo { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
-
-    // Navigation properties
     public TaskStatusItem Status { get; private set; } = null!;
     public User User { get; private set; } = null!;
 

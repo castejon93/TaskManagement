@@ -15,7 +15,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(u => u.Id);
 
         builder.Property(u => u.Id)
-               .UseIdentityColumn();          // IDENTITY(1,1)
+               .UseIdentityColumn();          
 
         builder.Property(u => u.Name)
                .IsRequired()
@@ -36,7 +36,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                .HasColumnType("datetime2")
                .HasDefaultValueSql("GETUTCDATE()");
 
-        // Tell EF not to generate a value on add — CreatedAt is set in the entity.
         builder.Property(u => u.CreatedAt)
                .ValueGeneratedOnAdd();
     }

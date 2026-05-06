@@ -5,10 +5,6 @@ using TaskManagement.Infrastructure.Persistence;
 
 namespace TaskManagement.Infrastructure.Repositories;
 
-/// <summary>
-/// EF Core implementation of <see cref="IUserRepository"/> that persists
-/// <see cref="User"/> entities to the <c>dbo.Users</c> table.
-/// </summary>
 public class UserRepository : IUserRepository
 {
     private readonly TaskManagementDbContext _db;
@@ -21,17 +17,17 @@ public class UserRepository : IUserRepository
     public async Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken) =>
         await _db.Users.AsNoTracking().ToListAsync(cancellationToken);
 
-    /// <summary>Returns a user by primary key, or <see langword="null"/> if not found.</summary>
+    /// <summary>Returns a user by primary key.</summary>
     /// <param name="id">Primary key of the user.</param>
     /// <param name="cancellationToken">Request cancellation token.</param>
-    /// <returns>The matching <see cref="User"/>, or <see langword="null"/> if not found.</returns>
+    /// <returns>The matching <see cref="User"/>.</returns>
     public async Task<User?> GetByIdAsync(int id, CancellationToken cancellationToken) =>
         await _db.Users.FindAsync(new object[] { id }, cancellationToken);
 
-    /// <summary>Returns the user whose email matches the given value, or <see langword="null"/> if not found.</summary>
+    /// <summary>Returns the user whose email matches the given value.</summary>
     /// <param name="email">The email address to search for (case-insensitive via database collation).</param>
     /// <param name="cancellationToken">Request cancellation token.</param>
-    /// <returns>The matching <see cref="User"/>, or <see langword="null"/> if not found.</returns>
+    /// <returns>The matching <see cref="User"/>.</returns>
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken) =>
         await _db.Users.AsNoTracking()
                        .FirstOrDefaultAsync(u => u.Email == email, cancellationToken);

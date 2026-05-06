@@ -45,7 +45,7 @@ public class TaskService
     public virtual async Task<TaskResponse> CreateAsync(CreateTaskRequest request, CancellationToken cancellationToken)
     {
         // Validate the assigned user exists.
-        var user = await _userRepository.GetByIdAsync(request.UserId, cancellationToken)
+        User user = await _userRepository.GetByIdAsync(request.UserId, cancellationToken)
             ?? throw new NotFoundException(nameof(User), request.UserId);
 
         // New tasks always start as Pending (seed Id = 1).
@@ -77,13 +77,13 @@ public class TaskService
     public virtual async Task<TaskResponse> UpdateStatusAsync(
         int taskId, UpdateTaskStatusRequest request, CancellationToken cancellationToken)
     {
-        var task = await _taskRepository.GetByIdAsync(taskId, cancellationToken)
+        TaskItem task = await _taskRepository.GetByIdAsync(taskId, cancellationToken)
             ?? throw new NotFoundException(nameof(TaskItem), taskId);
 
-        var currentStatus = await _statusRepository.GetByIdAsync(task.StatusId, cancellationToken)
+        TaskStatusItem currentStatus = await _statusRepository.GetByIdAsync(task.StatusId, cancellationToken)
             ?? throw new NotFoundException(nameof(TaskStatusItem), task.StatusId);
 
-        var newStatus = await _statusRepository.GetByIdAsync(request.NewStatusId, cancellationToken)
+        TaskStatusItem newStatus = await _statusRepository.GetByIdAsync(request.NewStatusId, cancellationToken)
             ?? throw new NotFoundException(nameof(TaskStatusItem), request.NewStatusId);
 
         // Domain entity validates the business rule (sequential transition).
@@ -95,7 +95,7 @@ public class TaskService
         return MapToResponse(updated!);
     }
 
-    private static TaskResponse MapToResponse(TaskItem t) =>
-        new(t.Id, t.Title, t.Description, t.StatusId, t.Status.Name,
-            t.UserId, t.User.Name, t.AdditionalInfo, t.CreatedAt, t.UpdatedAt);
+    private static TaskResponse MapToResponse(TaskItem task) =>
+        new(task.Id, task.Title, task.Description, task.StatusId, task.Status.Name,
+            task.UserId, task.User.Name, task.AdditionalInfo, task.CreatedAt, task.UpdatedAt);
 }

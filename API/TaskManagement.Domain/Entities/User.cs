@@ -7,11 +7,8 @@ public class User
     public string Name { get; private set; } = string.Empty;
     public string Email { get; private set; } = string.Empty;
     public DateTime CreatedAt { get; private set; }
-
-    // Navigation property: a user can have many tasks assigned.
     public ICollection<TaskItem> Tasks { get; private set; } = new List<TaskItem>();
 
-    // Private constructor — EF Core needs a parameterless constructor.
     private User() { }
 
     /// <summary>

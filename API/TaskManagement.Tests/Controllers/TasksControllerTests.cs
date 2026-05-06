@@ -33,8 +33,7 @@ public class TasksControllerTests
         _sut = new TasksController(
             _serviceMock.Object,
             _createValidator.Object,
-            _statusValidator.Object,
-            NullLogger<TasksController>.Instance);
+            _statusValidator.Object);
     }
 
     // ── Helper: configure validator behaviour ────────────────────────────────────
@@ -126,8 +125,7 @@ public class TasksControllerTests
         var sut = new TasksController(
             _serviceMock.Object,
             new CreateTaskRequestValidator(),
-            _statusValidator.Object,
-            NullLogger<TasksController>.Instance);
+            _statusValidator.Object);
 
         var act = async () => await sut.Create(new CreateTaskRequest("", null, 0, null), CancellationToken.None);
 
@@ -161,8 +159,7 @@ public class TasksControllerTests
         var sut = new TasksController(
             _serviceMock.Object,
             _createValidator.Object,
-            new UpdateTaskStatusRequestValidator(),
-            NullLogger<TasksController>.Instance);
+            new UpdateTaskStatusRequestValidator());
 
         var act = async () => await sut.UpdateStatus(1, new UpdateTaskStatusRequest(0), CancellationToken.None);
 

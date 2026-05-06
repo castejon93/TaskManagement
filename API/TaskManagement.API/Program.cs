@@ -1,4 +1,3 @@
-using FluentValidation;
 using Serilog;
 using TaskManagement.Application;
 using TaskManagement.Infrastructure;
@@ -13,9 +12,7 @@ Log.Logger = new LoggerConfiguration()
 
 try
 {
-    Log.Information("Starting TaskManagement API...");
-
-    var builder = WebApplication.CreateBuilder(args);
+    WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
     // Replace the default .NET logger with Serilog.
     builder.Host.UseSerilog((context, services, configuration) =>

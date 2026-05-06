@@ -72,7 +72,7 @@ public class GlobalExceptionMiddleware
         else
             _logger.LogWarning(exception, "Handled exception {StatusCode} for {Method} {Path}",
                 (int)statusCode, context.Request.Method, context.Request.Path);
-
+        
         context.Response.StatusCode = (int)statusCode;
         context.Response.ContentType = "application/json";
 

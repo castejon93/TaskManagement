@@ -20,9 +20,6 @@ public class TaskItemConfiguration : IEntityTypeConfiguration<TaskItem>
         builder.Property(t => t.Description)
                .HasColumnType("nvarchar(max)");
 
-        // AdditionalInfo is a JSON column — stored as nvarchar(max).
-        // Validation is done at the application layer (FluentValidation) and
-        // at the DB layer (ISJSON check constraint already in the schema).
         builder.Property(t => t.AdditionalInfo)
                .HasColumnType("nvarchar(max)");
 
@@ -34,14 +31,12 @@ public class TaskItemConfiguration : IEntityTypeConfiguration<TaskItem>
         builder.Property(t => t.UpdatedAt)
                .HasColumnType("datetime2");
 
-        // FK: Tasks → TaskStatus
         builder.HasOne(t => t.Status)
                .WithMany(s => s.Tasks)
                .HasForeignKey(t => t.StatusId)
                .OnDelete(DeleteBehavior.Restrict)
                .HasConstraintName("FK_Tasks_TaskStatus");
 
-        // FK: Tasks → Users
         builder.HasOne(t => t.User)
                .WithMany(u => u.Tasks)
                .HasForeignKey(t => t.UserId)

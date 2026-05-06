@@ -19,7 +19,6 @@ public static class DependencyInjection
         services.AddScoped<TaskStatusService>();
 
         // Auto-discover and register all validators in this assembly.
-        // typeof() works with static classes; the generic overload does not.
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
 
         return services;

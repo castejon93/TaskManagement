@@ -12,16 +12,13 @@ public class UsersController : ControllerBase
 {
     private readonly UserService _userService;
     private readonly IValidator<CreateUserRequest> _validator;
-    private readonly ILogger<UsersController> _logger;
 
     public UsersController(
         UserService userService,
-        IValidator<CreateUserRequest> validator,
-        ILogger<UsersController> logger)
+        IValidator<CreateUserRequest> validator)
     {
         _userService = userService;
         _validator = validator;
-        _logger = logger;
     }
 
     /// <summary>
@@ -33,7 +30,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<UserResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var users = await _userService.GetAllAsync(cancellationToken);
+        IEnumerable<UserResponse> users = await _userService.GetAllAsync(cancellationToken);
         return Ok(users);
     }
 
@@ -54,8 +51,7 @@ public class UsersController : ControllerBase
         // Validate the request before calling the service.
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        _logger.LogInformation("Creating user with email {Email}.", request.Email);
-        var created = await _userService.CreateAsync(request, cancellationToken);
+        UserResponse created = await _userService.CreateAsync(request, cancellationToken);
 
         return CreatedAtAction(nameof(GetAll), new { id = created.Id }, created);
     }

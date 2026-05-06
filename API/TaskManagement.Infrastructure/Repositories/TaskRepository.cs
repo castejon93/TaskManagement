@@ -15,35 +15,32 @@ public class TaskRepository : ITaskRepository
     /// Returns all tasks with <c>Status</c> and <c>User</c> navigations loaded.
     /// Applies optional userId and statusId filters, ordered by <c>CreatedAt</c> descending.
     /// </summary>
-    /// <param name="userId">Optional user ID filter; pass <see langword="null"/> to include all users.</param>
-    /// <param name="statusId">Optional status ID filter; pass <see langword="null"/> to include all statuses.</param>
-    /// <param name="cancellationToken">Request cancellation token.</param>
+    /// <param name="userId">Optional user ID filter.</param>
+    /// <param name="statusId">Optional status ID filter.</param>
+    /// <param name="cancellationToken">Request cancellation token</param>
     /// <returns>An untracked, ordered collection of <see cref="TaskItem"/> entities.</returns>
     public async Task<IEnumerable<TaskItem>> GetAllAsync(
         int? userId, int? statusId, CancellationToken cancellationToken)
     {
-        // Start with a base query that always includes navigations needed for the DTO.
         var query = _db.Tasks
                        .AsNoTracking()
                        .Include(t => t.Status)
                        .Include(t => t.User)
                        .AsQueryable();
 
-        // Apply optional filters — null means "no filter on this dimension".
         if (userId.HasValue)
             query = query.Where(t => t.UserId == userId.Value);
 
         if (statusId.HasValue)
             query = query.Where(t => t.StatusId == statusId.Value);
 
-        // Default sort: newest first (matches Section 8.1 reporting query).
         return await query.OrderByDescending(t => t.CreatedAt).ToListAsync(cancellationToken);
     }
 
-    /// <summary>Returns a task by ID with <c>Status</c> and <c>User</c> navigations loaded, or <see langword="null"/> if not found.</summary>
+    /// <summary>Returns a task by ID with</summary>
     /// <param name="id">Primary key of the task.</param>
     /// <param name="cancellationToken">Request cancellation token.</param>
-    /// <returns>The matching <see cref="TaskItem"/> with navigations, or <see langword="null"/> if not found.</returns>
+    /// <returns>The matching <see cref="TaskItem"/> with navigations.</returns>
     public async Task<TaskItem?> GetByIdAsync(int id, CancellationToken cancellationToken) =>
         await _db.Tasks
                  .Include(t => t.Status)

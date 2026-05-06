@@ -7,7 +7,6 @@ using TaskManagement.Infrastructure.Repositories;
 
 namespace TaskManagement.Infrastructure;
 
-/// <summary>Registers all Infrastructure layer services into the DI container.</summary>
 public static class DependencyInjection
 {
     /// <summary>

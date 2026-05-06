@@ -25,8 +25,7 @@ public class UsersControllerTests
 
         _sut = new UsersController(
             _serviceMock.Object,
-            _validatorMock.Object,
-            NullLogger<UsersController>.Instance);
+            _validatorMock.Object);
     }
 
     // ── Helper ───────────────────────────────────────────────────────────────────
@@ -116,8 +115,7 @@ public class UsersControllerTests
         // Use a real validator so ValidateAndThrowAsync actually throws on invalid input
         var sut = new UsersController(
             _serviceMock.Object,
-            new CreateUserRequestValidator(),
-            NullLogger<UsersController>.Instance);
+            new CreateUserRequestValidator());
 
         var act = async () => await sut.Create(new CreateUserRequest("", "not-an-email"), CancellationToken.None);
 

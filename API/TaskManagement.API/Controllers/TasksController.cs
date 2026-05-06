@@ -13,18 +13,15 @@ public class TasksController : ControllerBase
     private readonly TaskService _taskService;
     private readonly IValidator<CreateTaskRequest> _createValidator;
     private readonly IValidator<UpdateTaskStatusRequest> _statusValidator;
-    private readonly ILogger<TasksController> _logger;
 
     public TasksController(
         TaskService taskService,
         IValidator<CreateTaskRequest> createValidator,
-        IValidator<UpdateTaskStatusRequest> statusValidator,
-        ILogger<TasksController> logger)
+        IValidator<UpdateTaskStatusRequest> statusValidator)
     {
         _taskService = taskService;
         _createValidator = createValidator;
         _statusValidator = statusValidator;
-        _logger = logger;
     }
 
     /// <summary>
@@ -42,8 +39,7 @@ public class TasksController : ControllerBase
         [FromQuery] int? statusId,
         CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Retrieving tasks. UserId={UserId}, StatusId={StatusId}.", userId, statusId);
-        var tasks = await _taskService.GetAllAsync(userId, statusId, cancellationToken);
+        IEnumerable<TaskResponse> tasks = await _taskService.GetAllAsync(userId, statusId, cancellationToken);
         return Ok(tasks);
     }
 
@@ -63,8 +59,7 @@ public class TasksController : ControllerBase
     {
         await _createValidator.ValidateAndThrowAsync(request, cancellationToken);
 
-        _logger.LogInformation("Creating task '{Title}' for UserId={UserId}.", request.Title, request.UserId);
-        var created = await _taskService.CreateAsync(request, cancellationToken);
+        TaskResponse created = await _taskService.CreateAsync(request, cancellationToken);
 
         return CreatedAtAction(nameof(GetAll), new { id = created.Id }, created);
     }
@@ -88,8 +83,7 @@ public class TasksController : ControllerBase
     {
         await _statusValidator.ValidateAndThrowAsync(request, cancellationToken);
 
-        _logger.LogInformation("Updating status of task {TaskId} to StatusId={StatusId}.", id, request.NewStatusId);
-        var updated = await _taskService.UpdateStatusAsync(id, request, cancellationToken);
+        TaskResponse updated = await _taskService.UpdateStatusAsync(id, request, cancellationToken);
 
         return Ok(updated);
     }

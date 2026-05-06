@@ -35,7 +35,7 @@ public class UserService
     public virtual async Task<UserResponse> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
     {
         // Enforce uniqueness at the service layer (the DB constraint is the safety net).
-        var existing = await _userRepository.GetByEmailAsync(request.Email, cancellationToken);
+        User? existing = await _userRepository.GetByEmailAsync(request.Email, cancellationToken);
         if (existing is not null)
             throw new ConflictException($"A user with email '{request.Email}' already exists.");
 
@@ -44,6 +44,6 @@ public class UserService
         return MapToResponse(created);
     }
 
-    private static UserResponse MapToResponse(User u) =>
-        new(u.Id, u.Name, u.Email, u.CreatedAt);
+    private static UserResponse MapToResponse(User user) =>
+        new(user.Id, user.Name, user.Email, user.CreatedAt);
 }

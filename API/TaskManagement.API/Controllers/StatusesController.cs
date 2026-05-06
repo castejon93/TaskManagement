@@ -10,14 +10,12 @@ namespace TaskManagement.API.Controllers;
 public class StatusesController : ControllerBase
 {
     private readonly TaskStatusService _taskStatusService;
-    private readonly ILogger<StatusesController> _logger;
 
     public StatusesController(
         TaskStatusService taskStatusService,
         ILogger<StatusesController> logger)
     {
         _taskStatusService = taskStatusService;
-        _logger = logger;
     }
 
     /// <summary>
