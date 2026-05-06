@@ -25,6 +25,10 @@ import { FormActionsComponent } from '../../../../shared/components/form-actions
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss',
 })
+/**
+ * Create-user form rendered at /users/new.
+ * Dispatches createUser on valid submit and navigates back to /users on success.
+ */
 export class UserFormComponent {
   private readonly store = inject(Store);
   private readonly actions$ = inject(Actions);
@@ -33,10 +37,13 @@ export class UserFormComponent {
 
   readonly form = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
+    /** Validators.email checks RFC-compliant format; the API also validates server-side. */
     email: ['', [Validators.required, Validators.email]],
   });
 
   constructor() {
+    // Navigate away as soon as the API confirms the user was created.
+    // takeUntilDestroyed() uses DestroyRef internally — no manual unsubscribe needed.
     this.actions$
       .pipe(ofType(createUserSuccess), takeUntilDestroyed())
       .subscribe(() => this.router.navigate(['/users']));

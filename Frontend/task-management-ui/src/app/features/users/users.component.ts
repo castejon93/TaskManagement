@@ -26,6 +26,11 @@ import { PageShellComponent } from '../../shared/components/page-shell/page-shel
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
+/**
+ * Users list page rendered at /users.
+ * Displays all registered users in a sortable mat-table and provides a
+ * button to navigate to the create-user form at /users/new.
+ */
 export class UsersComponent implements OnInit, AfterViewInit {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
@@ -33,17 +38,21 @@ export class UsersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   readonly columns = ['name', 'email', 'createdAt'];
+  /** Bridges the NgRx users selector to a signal consumed directly in the template. */
   readonly users = toSignal(this.store.select(selectAllUsers), { initialValue: [] });
   readonly loading = toSignal(this.store.select(selectUsersLoading), { initialValue: false });
+  /** MatTableDataSource enables client-side column sorting. */
   readonly dataSource = new MatTableDataSource<User>();
 
   constructor() {
+    // Sync the DataSource whenever the users signal changes (e.g. after a new user is created).
     effect(() => {
       this.dataSource.data = this.users();
     });
   }
 
   ngAfterViewInit(): void {
+    // Attach the MatSort directive after the view is fully initialized.
     this.dataSource.sort = this.sort;
   }
 

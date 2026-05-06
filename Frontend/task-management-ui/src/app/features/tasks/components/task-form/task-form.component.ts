@@ -39,15 +39,24 @@ import { FormActionsComponent } from '../../../../shared/components/form-actions
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss',
 })
+/**
+ * Create-task form rendered at /tasks/new.
+ * Dispatches createTask on valid submit and navigates back to /tasks on success.
+ * Custom fields are managed as a local signal array and serialized into the
+ * additionalInfo JSON column via serializeMetadata() before dispatch.
+ */
 export class TaskFormComponent {
   private readonly store = inject(Store);
   private readonly actions$ = inject(Actions);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
 
+  /** Populated by the users state pre-loaded in TasksComponent.ngOnInit(). */
   readonly users = toSignal(this.store.select(selectAllUsers), { initialValue: [] });
 
+  /** Live list of key-value pairs the user is building in the custom fields panel. */
   readonly customFields = signal<{ key: string; value: string }[]>([]);
+  /** Unbound input controls for the next custom field entry — not part of the main form. */
   readonly cfKey = new FormControl('');
   readonly cfValue = new FormControl('');
 
@@ -58,11 +67,14 @@ export class TaskFormComponent {
   });
 
   constructor() {
+    // Navigate away as soon as the API confirms the task was created.
+    // takeUntilDestroyed() uses DestroyRef internally — no manual unsubscribe needed.
     this.actions$
       .pipe(ofType(createTaskSuccess), takeUntilDestroyed())
       .subscribe(() => this.router.navigate(['/tasks']));
   }
 
+  /** Adds a completed key-value pair to the customFields signal and clears the inputs. */
   addCustomField(): void {
     const key = this.cfKey.value?.trim();
     const val = this.cfValue.value?.trim();
