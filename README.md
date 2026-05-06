@@ -114,8 +114,6 @@ A full-stack task management application built with **.NET 10**, **Angular 21**,
 
 - **CancellationToken propagation** — all controller actions and service methods accept and forward a `CancellationToken`, allowing the framework to abort database queries when the client disconnects.
 
-- **AdditionalInfo column** — stored as `NVARCHAR(MAX)` containing a JSON document (`{ "customFields": { "key": "value" } }`). Serialization and deserialization are handled by `metadata.utils.ts` on the frontend and by the `TaskService` on the backend, with no additional ORM mapping needed.
-
 ---
 
 ### Frontend
@@ -124,23 +122,9 @@ A full-stack task management application built with **.NET 10**, **Angular 21**,
 
 - **NgRx 21** — global state managed with `Store` + `Actions` + `Effects`. Feature state slices (`tasks`, `users`) are registered lazily via `provideState()` and `provideEffects()` in the route providers, so they are only loaded when the user navigates to the feature.
 
-- **`concatMap` for loads, `exhaustMap` for mutations** — `concatMap` queues filter requests without cancelling in-flight HTTP calls (avoids `TaskCanceledException` on the API). `exhaustMap` ignores duplicate dispatches while a create/update request is in flight (prevents double-submit).
-
-- **Signal inputs/outputs** — `input()` and `output()` replace `@Input()` / `@Output()` decorators for all shared components.
-
-- **`toSignal()`** — `async` pipe is not used anywhere. All observables from the NgRx store are converted to signals with `toSignal()`, which integrates cleanly with Angular's signal-based change detection.
-
-- **`takeUntilDestroyed()`** — used in form components to automatically unsubscribe from `Actions` streams when the component is destroyed, replacing manual `Subject`/`takeUntil` teardown.
-
 - **Lazy-loaded routes** — `app.routes.ts` loads the `tasks` and `users` feature chunks on demand via `loadChildren`.
 
-- **`startWith(null)` on the status filter** — triggers the initial `loadTasks` dispatch when the task-list mounts, without a separate `ngOnInit` dispatch in the parent shell component.
-
-- **`SKIP_LOADING` token** — both `TasksApiService` and `UsersApiService` set this `HttpContextToken` to suppress the global loading interceptor. Loading state for those features is already tracked by NgRx selectors (`selectTasksLoading`, `selectUsersLoading`), so the page-shell spinner is the only indicator shown.
-
 - **Angular Material M3 dark theme** — applied globally via `styles.scss`. No per-component theming overrides.
-
-- **External template/style files** — all components use `templateUrl` and `styleUrl`. No inline `template` or `styles` in any `@Component` decorator.
 
 ---
 
