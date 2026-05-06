@@ -16,55 +16,31 @@ import { PageShellComponent } from '../../shared/components/page-shell/page-shel
   selector: 'app-users',
   standalone: true,
   imports: [
-    DatePipe, MatTableModule, MatButtonModule, MatIconModule, MatSortModule,
+    DatePipe,
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSortModule,
     PageShellComponent,
   ],
-  template: `
-    <app-page-shell [loading]="loading()">
-      <span pageStart class="page-title">Users</span>
-      <button pageEnd mat-raised-button class="btn-create" (click)="goToNewUser()">
-        <mat-icon>person_add</mat-icon> New User
-      </button>
-
-      <table pageContent mat-table matSort [dataSource]="dataSource" class="users-table mat-elevation-z2">
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let u">{{ u.name }}</td>
-        </ng-container>
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let u">{{ u.email }}</td>
-        </ng-container>
-        <ng-container matColumnDef="createdAt">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Created</th>
-          <td mat-cell *matCellDef="let u">{{ u.createdAt | date:"mediumDate" }}</td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columns"></tr>
-        <tr mat-row *matRowDef="let row; columns: columns;"></tr>
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell no-data" [attr.colspan]="columns.length">No users found.</td>
-        </tr>
-      </table>
-    </app-page-shell>
-  `,
-  styles: [`
-    .page-title { font-size: 16px; font-weight: 600; color: #e6edf3; }
-    .users-table { width: 100%; }
-  `]
+  templateUrl: './users.component.html',
+  styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  private readonly store  = inject(Store);
+  private readonly store = inject(Store);
   private readonly router = inject(Router);
 
   @ViewChild(MatSort) sort!: MatSort;
 
   readonly columns = ['name', 'email', 'createdAt'];
-  readonly users   = toSignal(this.store.select(selectAllUsers),     { initialValue: [] });
+  readonly users = toSignal(this.store.select(selectAllUsers), { initialValue: [] });
   readonly loading = toSignal(this.store.select(selectUsersLoading), { initialValue: false });
   readonly dataSource = new MatTableDataSource<User>();
 
   constructor() {
-    effect(() => { this.dataSource.data = this.users(); });
+    effect(() => {
+      this.dataSource.data = this.users();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -75,5 +51,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.store.dispatch(loadUsers());
   }
 
-  goToNewUser(): void { this.router.navigate(['/users/new']); }
+  goToNewUser(): void {
+    this.router.navigate(['/users/new']);
+  }
 }

@@ -1,0 +1,92 @@
+.task-table {
+  width: 100%;
+}
+
+.desc-cell {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Advance status button */
+.advance-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 12px;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.advance-btn:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Pending → In Progress (yellow) */
+.advance-btn--yellow {
+  background-color: #f9a825;
+  color: #212121;
+}
+
+.advance-btn--yellow:hover {
+  background-color: #f57f17;
+}
+
+/* In Progress → Done (green) */
+.advance-btn--green {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+.advance-btn--green:hover {
+  background-color: #1b5e20;
+}
+
+.advance-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+/* Completed pill */
+.done-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.done-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #2e7d32;
+}
+
+.actions-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-btn {
+  color: #58a6ff;
+  opacity: 0.8;
+}
+
+.info-btn:hover {
+  opacity: 1;
+}

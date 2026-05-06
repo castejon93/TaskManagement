@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, exhaustMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UsersApiService } from '../../../core/api/users-api.service';
 import { NotificationService } from '../../../core/services/notification.service';
@@ -12,12 +12,11 @@ export class UsersEffects {
   private readonly api = inject(UsersApiService);
   private readonly notify = inject(NotificationService);
 
-  // switchMap cancels the previous HTTP call if a new loadUsers action
-  // arrives before the previous one completes — prevents race conditions.
+  // concatMap queues requests — no HTTP cancellations are sent to the API.
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.loadUsers),
-      switchMap(() =>
+      concatMap(() =>
         this.api.getAll().pipe(
           map((users) => UsersActions.loadUsersSuccess({ users })),
           catchError((err) => of(UsersActions.loadUsersFailure({ error: err.message }))),
@@ -26,10 +25,11 @@ export class UsersEffects {
     ),
   );
 
+  // exhaustMap ignores duplicate dispatches while a request is in flight — prevents double-submit.
   createUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.createUser),
-      switchMap(({ request }) =>
+      exhaustMap(({ request }) =>
         this.api.create(request).pipe(
           map((user) => {
             this.notify.success(`User "${user.name}" created successfully.`);

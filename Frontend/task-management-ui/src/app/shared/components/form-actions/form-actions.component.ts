@@ -16,21 +16,12 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-form-actions',
   standalone: true,
   imports: [MatButtonModule, MatIconModule],
-  template: `
-    <div class="form-actions">
-      <button mat-raised-button class="btn-cancel" type="button" (click)="cancelled.emit()">
-        <mat-icon>arrow_back</mat-icon> Cancel
-      </button>
-      <button mat-raised-button class="btn-create" type="submit" [disabled]="disabled()">
-        <mat-icon>{{ submitIcon() }}</mat-icon> {{ submitLabel() }}
-      </button>
-    </div>
-  `,
-  styles: [`.form-actions { display: flex; justify-content: flex-end; gap: 8px; }`]
+  templateUrl: './form-actions.component.html',
+  styleUrl: './form-actions.component.scss',
 })
 export class FormActionsComponent {
   readonly submitLabel = input('Submit');
-  readonly submitIcon  = input('save');
-  readonly disabled    = input(false);
-  readonly cancelled   = output<void>();
+  readonly submitIcon = input('save');
+  readonly disabled = input(false);
+  readonly cancelled = output<void>();
 }

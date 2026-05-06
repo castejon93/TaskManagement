@@ -14,28 +14,29 @@ const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 const initialState: UsersState = adapter.getInitialState({
   loading: false,
-  error: null
+  error: null,
 });
 
 export const usersReducer = createReducer(
   initialState,
 
-  on(UsersActions.loadUsers, state => ({
-    ...state, loading: true, error: null
+  on(UsersActions.loadUsers, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
   })),
 
   on(UsersActions.loadUsersSuccess, (state, { users }) =>
-    adapter.setAll(users, { ...state, loading: false })
+    adapter.setAll(users, { ...state, loading: false }),
   ),
 
   on(UsersActions.loadUsersFailure, (state, { error }) => ({
-    ...state, loading: false, error
+    ...state,
+    loading: false,
+    error,
   })),
 
-  on(UsersActions.createUserSuccess, (state, { user }) =>
-    adapter.addOne(user, state)   // Adds to normalized entity map
-  )
+  on(UsersActions.createUserSuccess, (state, { user }) => adapter.addOne(user, state)),
 );
 
-// Export entity selectors used by users.selectors.ts
 export const { selectAll } = adapter.getSelectors();

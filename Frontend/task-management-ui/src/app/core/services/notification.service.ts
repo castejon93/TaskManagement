@@ -13,13 +13,22 @@ export class NotificationService {
 
   private timer: ReturnType<typeof setTimeout> | null = null;
 
-  success(message: string): void { this.show(message, 'success', 4000); }
-  error(message: string): void   { this.show(message, 'error',   6000); }
-  warning(message: string): void { this.show(message, 'warning', 5000); }
+  success(message: string): void {
+    this.show(message, 'success', 4000);
+  }
+  error(message: string): void {
+    this.show(message, 'error', 6000);
+  }
+  warning(message: string): void {
+    this.show(message, 'warning', 5000);
+  }
 
   dismiss(): void {
     this.notification.set(null);
-    if (this.timer) { clearTimeout(this.timer); this.timer = null; }
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
   }
 
   private show(message: string, type: NotificationType, duration: number): void {

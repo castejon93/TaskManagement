@@ -1,7 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { User, CreateUserRequest } from '../../../core/models/user';
 
-// Action naming convention: [Source] Event
 export const loadUsers = createAction('[Users] Load Users');
 
 export const loadUsersSuccess = createAction(

@@ -1,0 +1,83 @@
+<div class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create New Task</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" placeholder="Task title" />
+          @if (form.get('title')?.hasError('required') && form.get('title')?.touched) {
+            <mat-error>Title is required.</mat-error>
+          }
+          @if (form.get('title')?.hasError('maxlength')) {
+            <mat-error>Title cannot exceed 200 characters.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            rows="3"
+            placeholder="Description"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Assign to User</mat-label>
+          <mat-select formControlName="userId">
+            @for (user of users(); track user.id) {
+              <mat-option [value]="user.id">{{ user.name }}</mat-option>
+            }
+          </mat-select>
+          @if (form.get('userId')?.hasError('required') && form.get('userId')?.touched) {
+            <mat-error>User is required.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-expansion-panel class="meta-panel">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Additional Info</mat-panel-title>
+            <mat-panel-description>Custom fields</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="meta-fields">
+            @for (field of customFields(); track $index) {
+              <div class="custom-field-row">
+                <span class="custom-field-label">{{ field.key }}:</span>
+                <span class="custom-field-value">{{ field.value }}</span>
+                <button mat-icon-button type="button" (click)="removeCustomField($index)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            }
+
+            <div class="custom-field-add-row">
+              <mat-form-field appearance="outline" class="cf-key">
+                <mat-label>Field name</mat-label>
+                <input matInput [formControl]="cfKey" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="cf-val">
+                <mat-label>Value</mat-label>
+                <input matInput [formControl]="cfValue" />
+              </mat-form-field>
+              <button mat-stroked-button type="button" (click)="addCustomField()">
+                <mat-icon>add</mat-icon> Add
+              </button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <app-form-actions
+          submitLabel="Create Task"
+          submitIcon="add_task"
+          [disabled]="form.invalid"
+          (cancelled)="cancel()"
+        />
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

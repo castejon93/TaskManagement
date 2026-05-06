@@ -1,0 +1,8 @@
+<div class="form-actions">
+  <button mat-raised-button class="btn-cancel" type="button" (click)="cancelled.emit()">
+    <mat-icon>arrow_back</mat-icon> Cancel
+  </button>
+  <button mat-raised-button class="btn-create" type="submit" [disabled]="disabled()">
+    <mat-icon>{{ submitIcon() }}</mat-icon> {{ submitLabel() }}
+  </button>
+</div>

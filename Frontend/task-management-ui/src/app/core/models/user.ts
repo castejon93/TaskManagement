@@ -1,4 +1,3 @@
-// Mirrors UserResponse DTO from the .NET API
 export interface User {
   id: number;
   name: string;

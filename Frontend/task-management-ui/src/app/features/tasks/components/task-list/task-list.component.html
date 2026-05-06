@@ -1,0 +1,87 @@
+<app-page-shell [loading]="loading()">
+  <mat-form-field pageStart appearance="outline" subscriptSizing="dynamic">
+    <mat-label>Status</mat-label>
+    <mat-select [formControl]="statusFilter">
+      <mat-option [value]="null">All Statuses</mat-option>
+      @for (s of statuses(); track s.id) {
+        <mat-option [value]="s.id">{{ s.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button pageEnd mat-raised-button class="btn-create" (click)="goToNewTask()">
+    <mat-icon>add_task</mat-icon> New Task
+  </button>
+
+  <table pageContent mat-table matSort [dataSource]="dataSource" class="task-table mat-elevation-z2">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let task">{{ task.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let task" class="desc-cell">
+        {{ task.description ?? '—' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="userName">Assigned To</th>
+      <td mat-cell *matCellDef="let task">{{ task.userName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header="statusName">Status</th>
+      <td mat-cell *matCellDef="let task">
+        <app-status-badge [status]="task.statusName" />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Created</th>
+      <td mat-cell *matCellDef="let task">{{ task.createdAt | date: 'mediumDate' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let task">
+        <div class="actions-cell">
+          @if (task.statusId < 3) {
+            <button
+              class="advance-btn"
+              [class.advance-btn--yellow]="task.statusId === 1"
+              [class.advance-btn--green]="task.statusId === 2"
+              [matTooltip]="'Advance to ' + nextStatusName(task.statusId)"
+              (click)="advanceStatus(task)"
+            >
+              <mat-icon class="advance-icon">arrow_circle_right</mat-icon>
+              <span class="advance-label">{{ nextStatusName(task.statusId) }}</span>
+            </button>
+          } @else {
+            <span class="done-pill">
+              <mat-icon class="done-icon">check_circle</mat-icon>
+              Completed
+            </span>
+          }
+          @if (task.additionalInfo) {
+            <button
+              mat-icon-button
+              class="info-btn"
+              [matTooltip]="metaSummary(task)"
+              matTooltipClass="meta-tooltip"
+            >
+              <mat-icon>info_outline</mat-icon>
+            </button>
+          }
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell no-data" [attr.colspan]="columns.length">No tasks found.</td>
+    </tr>
+  </table>
+</app-page-shell>

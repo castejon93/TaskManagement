@@ -1,23 +1,23 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { User, CreateUserRequest } from '../models/user';
+import { SKIP_LOADING } from '../interceptors/loading.interceptor';
 
-@Injectable({ providedIn: 'root' })  // Singleton — provided once at root
+@Injectable({ providedIn: 'root' })
 export class UsersApiService {
 
-    // inject() is the modern Angular alternative to constructor injection.
-    // It works in injection context (constructor, field initializer, factory).
     private readonly http = inject(HttpClient);
     private readonly base = `${environment.apiUrl}/users`;
+    // Tracked by NgRx (selectUsersLoading) — suppresses the global overlay to avoid two spinners.
+    private readonly ctx = new HttpContext().set(SKIP_LOADING, true);
 
-    // Returns an Observable — no HTTP call is made until subscribed.
     getAll(): Observable<User[]> {
-        return this.http.get<User[]>(this.base);
+        return this.http.get<User[]>(this.base, { context: this.ctx });
     }
 
     create(request: CreateUserRequest): Observable<User> {
-        return this.http.post<User>(this.base, request);
+        return this.http.post<User>(this.base, request, { context: this.ctx });
     }
 }

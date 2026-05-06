@@ -21,13 +21,11 @@ export const appConfig: ApplicationConfig = {
     // Register interceptors globally — loading tracks request count, error shows notifications.
     provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor])),
 
-    provideAnimationsAsync(),
-
     // Empty root store — feature reducers are registered in their lazy routes.
     provideStore(),
     provideEffects(),
 
     // NgRx DevTools — only active in development (inspect state in browser).
-    provideStoreDevtools({ maxAge: 25, logOnly: environment.production })
-  ]
+    provideStoreDevtools({ maxAge: 25, logOnly: environment.production }),
+  ],
 };

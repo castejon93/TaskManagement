@@ -1,0 +1,68 @@
+.form-container {
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mat-mdc-card-header {
+  padding-bottom: 0 !important;
+}
+
+.mat-mdc-card-content {
+  padding-top: 12px !important;
+}
+
+.meta-panel {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 1px solid #30363d !important;
+  border-radius: 6px !important;
+}
+
+.meta-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.custom-field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(88, 166, 255, 0.06);
+}
+
+.custom-field-label {
+  font-weight: 600;
+  color: #8b949e;
+  font-size: 13px;
+}
+
+.custom-field-value {
+  flex: 1;
+  font-size: 13px;
+  color: #e6edf3;
+}
+
+.custom-field-add-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cf-key {
+  flex: 1;
+}
+
+.cf-val {
+  flex: 1.5;
+}

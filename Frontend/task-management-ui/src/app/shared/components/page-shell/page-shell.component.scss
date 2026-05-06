@@ -1,0 +1,32 @@
+.page-container {
+  padding: 24px;
+}
+
+.action-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 0 16px;
+}
+
+.action-bar-start {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.action-bar-end {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}

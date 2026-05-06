@@ -1,0 +1,21 @@
+<div class="page-container">
+  <mat-card>
+    <mat-card-content>
+      <div class="action-bar">
+        <div class="action-bar-start">
+          <ng-content select="[pageStart]" />
+        </div>
+        <div class="action-bar-end">
+          <ng-content select="[pageEnd]" />
+        </div>
+      </div>
+
+      @if (loading()) {
+        <div class="spinner-wrapper"><mat-spinner diameter="48" /></div>
+      }
+      <div [style.display]="loading() ? 'none' : ''">
+        <ng-content select="[pageContent]" />
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

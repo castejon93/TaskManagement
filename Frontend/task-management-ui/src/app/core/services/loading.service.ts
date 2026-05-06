@@ -4,9 +4,12 @@ import { Injectable, signal, computed } from '@angular/core';
 export class LoadingService {
   private readonly _count = signal(0);
 
-  /** True whenever at least one HTTP request is in flight. */
   readonly isLoading = computed(() => this._count() > 0);
 
-  increment(): void { this._count.update(n => n + 1); }
-  decrement(): void { this._count.update(n => Math.max(0, n - 1)); }
+  increment(): void {
+    this._count.update((n) => n + 1);
+  }
+  decrement(): void {
+    this._count.update((n) => Math.max(0, n - 1));
+  }
 }

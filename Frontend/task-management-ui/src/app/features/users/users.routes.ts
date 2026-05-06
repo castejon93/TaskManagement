@@ -7,21 +7,17 @@ import { UsersEffects } from './store/users.effects';
 export const USERS_ROUTES: Routes = [
   {
     path: '',
-    providers: [
-      provideState('users', usersReducer),
-      provideEffects(UsersEffects)
-    ],
+    providers: [provideState('users', usersReducer), provideEffects(UsersEffects)],
     children: [
       {
         path: '',
-        loadComponent: () =>
-          import('./users.component').then(m => m.UsersComponent)
+        loadComponent: () => import('./users.component').then((m) => m.UsersComponent),
       },
       {
         path: 'new',
         loadComponent: () =>
-          import('./components/user-form/user-form.component').then(m => m.UserFormComponent)
-      }
-    ]
-  }
+          import('./components/user-form/user-form.component').then((m) => m.UserFormComponent),
+      },
+    ],
+  },
 ];
