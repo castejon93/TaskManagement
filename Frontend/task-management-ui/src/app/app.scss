@@ -1,0 +1,52 @@
+// ── Global notification banner ────────────────────────────────────────
+.app-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  animation: slideDown 0.2s ease-out;
+
+  .notif-icon { font-size: 20px; height: 20px; width: 20px; flex-shrink: 0; }
+  .notif-message { flex: 1; }
+  .notif-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    padding: 0;
+    &:hover { opacity: 1; }
+  }
+
+  &--success { background-color: #388e3c; }
+  &--error   { background-color: #d32f2f; }
+  &--warning { background-color: #f57c00; color: #fff; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+// ── Global loading overlay ───────────────────────────────────────────
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(2px);
+}

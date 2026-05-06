@@ -1,0 +1,167 @@
+// ── Dark Theme — M3 system token overrides ───────────────────────────
+:root {
+  color-scheme: dark;
+
+  --mat-sys-primary:                   #58a6ff;
+  --mat-sys-on-primary:                #0d1117;
+  --mat-sys-primary-container:         #1f3a6e;
+  --mat-sys-on-primary-container:      #aecbff;
+  --mat-sys-secondary:                 #79c0ff;
+  --mat-sys-on-secondary:              #0d1117;
+  --mat-sys-background:                #0d1117;
+  --mat-sys-on-background:             #e6edf3;
+  --mat-sys-surface:                   #161b22;
+  --mat-sys-on-surface:                #e6edf3;
+  --mat-sys-surface-variant:           #21262d;
+  --mat-sys-on-surface-variant:        #8b949e;
+  --mat-sys-surface-container-lowest:  #090d12;
+  --mat-sys-surface-container-low:     #0d1117;
+  --mat-sys-surface-container:         #161b22;
+  --mat-sys-surface-container-high:    #1c2129;
+  --mat-sys-surface-container-highest: #21262d;
+  --mat-sys-outline:                   #30363d;
+  --mat-sys-outline-variant:           #21262d;
+  --mat-sys-error:                     #f85149;
+  --mat-sys-on-error:                  #ffffff;
+  --mat-app-background-color:          #0d1117;
+  --mat-app-text-color:                #e6edf3;
+}
+
+// ── Base ──────────────────────────────────────────────────────────────
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #0d1117;
+  color: #e6edf3;
+}
+
+// ── Toolbar ───────────────────────────────────────────────────────────
+.mat-toolbar {
+  background-color: #4a1d96 !important;
+  color: #f5f3ff !important;
+  border-bottom: 1px solid #5b21b6 !important;
+  box-shadow: 0 1px 8px rgba(74, 29, 150, 0.5) !important;
+  min-height: 52px !important;
+  height: 52px !important;
+  font-size: 18px !important;
+}
+
+// ── Cards ─────────────────────────────────────────────────────────────
+.mat-mdc-card {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  color: #e6edf3 !important;
+}
+
+// ── Table ─────────────────────────────────────────────────────────────
+.mat-mdc-table {
+  background: #161b22 !important;
+  color: #e6edf3 !important;
+}
+.mat-elevation-z2 { box-shadow: none !important; }
+
+.mat-mdc-header-row { background: #1c2129 !important; }
+.mat-mdc-header-cell {
+  color: #8b949e !important;
+  border-bottom: 1px solid #30363d !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.mat-mdc-cell {
+  color: #e6edf3 !important;
+  border-bottom-color: #21262d !important;
+}
+.mat-mdc-row:hover .mat-mdc-cell { background: #1c2129 !important; }
+
+// Table row & cell sizing
+.mat-mdc-table .mat-mdc-header-row,
+.mat-mdc-table .mat-mdc-row { height: 44px !important; }
+.mat-mdc-table .mat-mdc-header-cell,
+.mat-mdc-table .mat-mdc-cell { padding: 0 12px !important; font-size: 13px !important; }
+
+// Sort
+.mat-sort-header-arrow { color: #58a6ff !important; }
+
+// ── Form fields ───────────────────────────────────────────────────────
+.mat-mdc-form-field .mat-mdc-form-field-infix {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  min-height: 40px !important;
+}
+.mat-mdc-form-field .mdc-floating-label {
+  font-size: 13px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #8b949e !important;
+}
+.mat-mdc-form-field.mat-focused .mdc-floating-label,
+.mat-mdc-form-field .mdc-floating-label--float-above {
+  top: 0 !important;
+  transform: translateY(-106%) scale(0.75) !important;
+  color: #58a6ff !important;
+}
+.mat-mdc-form-field input,
+.mat-mdc-select-value { font-size: 13px !important; color: #e6edf3 !important; }
+
+// Outlined field border
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing { border-color: #30363d !important; }
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing { border-color: #58a6ff !important; }
+
+// Form field background
+.mat-mdc-text-field-wrapper { background-color: #1c2129 !important; }
+
+// ── Select panel ──────────────────────────────────────────────────────
+.mat-mdc-select-panel {
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+}
+.mat-mdc-option { color: #e6edf3 !important; }
+.mat-mdc-option:hover:not(.mdc-list-item--disabled),
+.mat-mdc-option.mat-mdc-option-active { background: #2d333b !important; }
+.mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text { color: #58a6ff !important; }
+.mat-mdc-select-arrow { color: #8b949e !important; }
+
+// ── Buttons ───────────────────────────────────────────────────────────
+.mat-mdc-raised-button,
+.mat-mdc-outlined-button {
+  height: 34px !important;
+  font-size: 13px !important;
+  padding: 0 14px !important;
+}
+
+// Green — create actions
+.btn-create.mat-mdc-raised-button:not(:disabled) { background-color: #238636 !important; color: #ffffff !important; }
+.btn-create.mat-mdc-raised-button:not(:disabled):hover { background-color: #2ea043 !important; }
+
+// Red — cancel actions
+.btn-cancel.mat-mdc-raised-button:not(:disabled) { background-color: #b91c1c !important; color: #ffffff !important; }
+.btn-cancel.mat-mdc-raised-button:not(:disabled):hover { background-color: #dc2626 !important; }
+
+// ── Done pill (dark-mode friendly) ────────────────────────────────────
+.done-pill {
+  background-color: rgba(63, 185, 80, 0.15) !important;
+  color: #3fb950 !important;
+}
+.done-icon { color: #3fb950 !important; }
+
+// ── Spinner ───────────────────────────────────────────────────────────
+.mat-mdc-progress-spinner circle { stroke: #58a6ff !important; }
+
+// ── Misc layout helpers ───────────────────────────────────────────────
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+.filters  { display: flex; gap: 16px; padding: 16px; flex-wrap: wrap; }
+.task-form { display: flex; flex-direction: column; max-width: 480px; padding: 24px; gap: 8px; }

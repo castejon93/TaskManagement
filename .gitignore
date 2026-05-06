@@ -1,0 +1,131 @@
+# =============================================================================
+# .gitignore — Task Management repository
+# Covers: .NET 10 (API/), SQL Server scripts (Database/), Angular (Frontend/)
+# =============================================================================
+
+
+# =============================================================================
+# .NET — build outputs
+# =============================================================================
+
+# Compiled output
+**/bin/
+**/obj/
+
+# NuGet packages (restored on build; never committed)
+**/packages/
+!**/packages/build/
+*.nupkg
+*.snupkg
+
+# NuGet lock files (commit nuget.lock.json only if you use locked-mode restore)
+nuget.lock.json
+
+# MSBuild binary log
+*.binlog
+
+# Visual Studio / Rider project-user files
+*.user
+*.suo
+.vs/
+*.sln.docstates
+*.userprefs
+*.pidb
+
+# Rider
+.idea/
+*.DotSettings.user
+
+# Test results and coverage artefacts
+TestResults/
+coverage.xml
+*.trx
+*.coveragexml
+*.coverage
+
+# Roslyn analysers / source generators cache
+.razor/
+
+# =============================================================================
+# .NET — runtime & tooling
+# =============================================================================
+
+# dotnet publish output
+publish/
+
+# Entity Framework migrations bundle
+efbundle
+efbundle.exe
+
+# Secrets (never commit credentials)
+**/appsettings.*.json
+!**/appsettings.json
+!**/appsettings.Development.json
+secrets.json
+*.pfx
+*.p12
+
+# Serilog rolling log files
+logs/
+*.log
+
+# =============================================================================
+# SQL Server / SSMS
+# =============================================================================
+
+# SSMS solution and project files
+*.ssmssln
+*.ssmssqlproj
+*.ssmssqlprojuserprefs
+
+# =============================================================================
+# Angular / Node (Frontend/)
+# =============================================================================
+
+# Dependencies (restored via npm install)
+Frontend/**/node_modules/
+
+# Angular build output
+Frontend/**/dist/
+Frontend/**/.angular/
+
+# Environment-specific files
+Frontend/**/src/environments/environment.*.ts
+!Frontend/**/src/environments/environment.ts
+!Frontend/**/src/environments/environment.development.ts
+
+# =============================================================================
+# OS artefacts
+# =============================================================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+
+# =============================================================================
+# Editors / IDEs
+# =============================================================================
+
+# VS Code workspace settings (keep launch.json / tasks.json if checked in)
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# JetBrains
+.idea/
+*.iml
+
+Requirement/

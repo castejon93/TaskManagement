@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+
+          <!-- ── Assemblies to measure (comma-separated — required by Coverlet) ── -->
+          <Include>[TaskManagement.Domain]*,[TaskManagement.Application]*,[TaskManagement.API]*</Include>
+
+          <!-- ── Assemblies to exclude ─────────────────────────────────────── -->
+          <!-- Infrastructure repositories require a real database; excluded     -->
+          <!-- from unit-test coverage measurement.                              -->
+          <Exclude>[TaskManagement.Infrastructure]*,[TaskManagement.Tests]*</Exclude>
+
+          <!-- ── Source files to exclude (comma-separated) ─────────────────── -->
+          <!-- Program.cs, DI wiring, and Middleware are integration concerns    -->
+          <!-- with no meaningful unit-test coverage.                            -->
+          <ExcludeByFile>**/obj/**,**/Program.cs,**/DependencyInjection.cs,**/Middleware/**</ExcludeByFile>
+
+          <!-- ── Format ──────────────────────────────────────────────────────── -->
+          <Format>cobertura</Format>
+
+          <!-- Skip auto-generated EF / source-generator code -->
+          <SkipAutoProps>true</SkipAutoProps>
+
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

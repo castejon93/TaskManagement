@@ -1,0 +1,337 @@
+<mxfile host="65bd71144e">
+    <diagram name="ERD - Task Management" id="erd-task-management">
+        <mxGraphModel dx="1011" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Task Management System — Entity Relationship Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="30" width="1020" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="USERS_table" value="Users" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fontSize=14;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="80" width="440" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="USERS_row_id" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="USERS_table" vertex="1">
+                    <mxGeometry y="30" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="USERS_row_id_key" value="PK" style="shape=partialRectangle;connectable=0;fillColor=#fff2cc;strokeColor=#d6b656;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_id" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_id_name" value="Id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_id" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_id_type" value="INT  IDENTITY(1,1)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#6c8ebf;" parent="USERS_row_id" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_name" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="USERS_table" vertex="1">
+                    <mxGeometry y="60" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="USERS_row_name_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_name" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_name_name" value="Name" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_name" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_name_type" value="NVARCHAR(100)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#6c8ebf;" parent="USERS_row_name" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_email" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="USERS_table" vertex="1">
+                    <mxGeometry y="90" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="USERS_row_email_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_email" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_email_name" value="Email" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_email" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_email_type" value="NVARCHAR(150)  NOT NULL  UNIQUE" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#6c8ebf;" parent="USERS_row_email" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_createdat" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=0;" parent="USERS_table" vertex="1">
+                    <mxGeometry y="120" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="USERS_row_createdat_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_createdat" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_createdat_name" value="CreatedAt" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="USERS_row_createdat" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="USERS_row_createdat_type" value="DATETIME2  NOT NULL  DEFAULT GETUTCDATE()" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#6c8ebf;" parent="USERS_row_createdat" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_table" value="Tasks" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fontSize=14;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="100" width="440" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_id" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="30" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_id_key" value="PK" style="shape=partialRectangle;connectable=0;fillColor=#fff2cc;strokeColor=#d6b656;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_id" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_id_name" value="Id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_id" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_id_type" value="INT  IDENTITY(1,1)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_id" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_title" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="60" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_title_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_title" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_title_name" value="Title" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_title" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_title_type" value="NVARCHAR(200)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_title" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_desc" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="90" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_desc_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_desc" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_desc_name" value="Description" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_desc" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_desc_type" value="NVARCHAR(MAX)  NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_desc" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_status" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="120" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_status_key" value="FK" style="shape=partialRectangle;connectable=0;fillColor=#f8cecc;strokeColor=#b85450;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_status" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_status_name" value="StatusId" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_status" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_status_type" value="INT  NOT NULL  → TaskStatus.Id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_status" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_userid" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="150" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_userid_key" value="FK" style="shape=partialRectangle;connectable=0;fillColor=#f8cecc;strokeColor=#b85450;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_userid" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_userid_name" value="UserId" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_userid" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_userid_type" value="INT  NOT NULL  → Users.Id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_userid" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_addinfo" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="180" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_addinfo_key" value="J" style="shape=partialRectangle;connectable=0;fillColor=#ffe6cc;strokeColor=#d79b00;top=0;left=0;bottom=0;right=0;fontStyle=3;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_addinfo" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_addinfo_name" value="AdditionalInfo" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_addinfo" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_addinfo_type" value="NVARCHAR(MAX)  NULL  CHECK ISJSON=1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_addinfo" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_createdat" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="210" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_createdat_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_createdat" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_createdat_name" value="CreatedAt" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_createdat" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_createdat_type" value="DATETIME2  NOT NULL  DEFAULT GETUTCDATE()" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_createdat" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_updatedat" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=0;" parent="TASKS_table" vertex="1">
+                    <mxGeometry y="240" width="440" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASKS_row_updatedat_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_updatedat" vertex="1" connectable="0">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_updatedat_name" value="UpdatedAt" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" parent="TASKS_row_updatedat" vertex="1" connectable="0">
+                    <mxGeometry x="40" width="140" height="30" as="geometry">
+                        <mxRectangle width="140" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASKS_row_updatedat_type" value="DATETIME2  NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#82b366;" parent="TASKS_row_updatedat" vertex="1" connectable="0">
+                    <mxGeometry x="180" width="260" height="30" as="geometry">
+                        <mxRectangle width="260" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="fk_userid_rel" value="assigned to" style="edgeStyle=entityRelationEdgeStyle;startArrow=ERmany;endArrow=ERmandOne;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#b85450;fontStyle=2;fontSize=11;" parent="1" source="TASKS_row_userid" target="USERS_row_id" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="json_note" value="&lt;b&gt;AdditionalInfo — JSON Column Structure&lt;/b&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;{&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;priority&quot;: &quot;Low | Medium | High&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;estimatedCompletionDate&quot;: &quot;YYYY-MM-DD&quot;,&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;tags&quot;: [ &quot;label1&quot;, &quot;label2&quot; ],&lt;br&gt;&amp;nbsp;&amp;nbsp;&quot;metadata&quot;: { &quot;anyKey&quot;: &quot;anyValue&quot; }&lt;br&gt;}&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;Validated with: ISJSON() = 1&lt;br&gt;Queried via: JSON_VALUE, JSON_QUERY, OPENJSON&lt;/i&gt;" style="text;html=1;strokeColor=#ffe6cc;fillColor=#fff2cc;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="410" width="440" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="json_arrow" value="" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#d6b656;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="TASKS_row_addinfo" target="json_note" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="indexes_note" value="&lt;b&gt;Indexes&lt;/b&gt;&lt;br&gt;&lt;br&gt;IDX_Tasks_UserId&lt;br&gt;&amp;nbsp;&amp;nbsp;ON Tasks(UserId)&lt;br&gt;&lt;br&gt;IDX_Tasks_StatusId&lt;br&gt;&amp;nbsp;&amp;nbsp;ON Tasks(StatusId)&lt;br&gt;&lt;br&gt;IDX_Tasks_CreatedAt&lt;br&gt;&amp;nbsp;&amp;nbsp;ON Tasks(CreatedAt DESC)&lt;br&gt;&lt;br&gt;UQ_Users_Email&lt;br&gt;&amp;nbsp;&amp;nbsp;ON Users(Email) UNIQUE" style="text;html=1;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=10;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="390" width="220" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="rules_note" value="&lt;b&gt;Business Rules&lt;/b&gt;&lt;br&gt;&lt;br&gt;✔ Title is mandatory (NOT NULL)&lt;br&gt;&lt;br&gt;✔ UserId is mandatory (NOT NULL)&lt;br&gt;&lt;br&gt;✔ Allowed status transitions:&lt;br&gt;&amp;nbsp;&amp;nbsp;Pending → InProgress → Done&lt;br&gt;&lt;br&gt;✘ Direct Pending → Done is&lt;br&gt;&amp;nbsp;&amp;nbsp;forbidden (enforced at app layer)" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=10;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="390" width="240" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#d6b656&quot;&gt;■&lt;/font&gt; PK — Primary Key&lt;br&gt;&lt;font color=&quot;#b85450&quot;&gt;■&lt;/font&gt; FK — Foreign Key&lt;br&gt;&lt;font color=&quot;#d79b00&quot;&gt;■&lt;/font&gt; J — JSON Column&lt;br&gt;&lt;font color=&quot;#9673a6&quot;&gt;■&lt;/font&gt; Lookup / Reference Table&lt;br&gt;——&gt; One-to-Many (crow&#39;s foot)" style="text;html=1;strokeColor=#666666;fillColor=#f5f5f5;fontColor=#333333;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;overflow=hidden;rotatable=0;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="620" width="220" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_table" value="TaskStatus" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;fontSize=14;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+                    <mxGeometry x="1180" y="100" width="590" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_id" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" vertex="1" parent="TASK_STATUSES_table">
+                    <mxGeometry y="30" width="590" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_id_key" value="PK" style="shape=partialRectangle;connectable=0;fillColor=#fff2cc;strokeColor=#d6b656;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_id">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_id_name" value="Id" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_id">
+                    <mxGeometry x="40" width="360" height="30" as="geometry">
+                        <mxRectangle width="360" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_id_type" value="INT  IDENTITY(1,1)  NOT NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#9673a6;" connectable="0" vertex="1" parent="TASK_STATUSES_row_id">
+                    <mxGeometry x="400" width="190" height="30" as="geometry">
+                        <mxRectangle width="190" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_name" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" vertex="1" parent="TASK_STATUSES_table">
+                    <mxGeometry y="60" width="590" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_name_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_name">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_name_name" value="Name" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_name">
+                    <mxGeometry x="40" width="360" height="30" as="geometry">
+                        <mxRectangle width="360" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_name_type" value="NVARCHAR(20)  NOT NULL  UNIQUE" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#9673a6;" connectable="0" vertex="1" parent="TASK_STATUSES_row_name">
+                    <mxGeometry x="400" width="190" height="30" as="geometry">
+                        <mxRectangle width="190" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_desc" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=1;" vertex="1" parent="TASK_STATUSES_table">
+                    <mxGeometry y="90" width="590" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_desc_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_desc">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_desc_name" value="Description" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_desc">
+                    <mxGeometry x="40" width="360" height="30" as="geometry">
+                        <mxRectangle width="360" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_desc_type" value="NVARCHAR(100)  NULL" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#9673a6;" connectable="0" vertex="1" parent="TASK_STATUSES_row_desc">
+                    <mxGeometry x="400" width="190" height="30" as="geometry">
+                        <mxRectangle width="190" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_sort" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;top=0;left=0;right=0;bottom=0;" vertex="1" parent="TASK_STATUSES_table">
+                    <mxGeometry y="120" width="590" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_sort_key" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_sort">
+                    <mxGeometry width="40" height="30" as="geometry">
+                        <mxRectangle width="40" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_sort_name" value="SortOrder" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;" connectable="0" vertex="1" parent="TASK_STATUSES_row_sort">
+                    <mxGeometry x="40" width="360" height="30" as="geometry">
+                        <mxRectangle width="360" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="TASK_STATUSES_row_sort_type" value="INT  NOT NULL  (1=Pending, 2=InProgress, 3=Done)" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;whiteSpace=wrap;fontColor=#9673a6;" connectable="0" vertex="1" parent="TASK_STATUSES_row_sort">
+                    <mxGeometry x="400" width="190" height="30" as="geometry">
+                        <mxRectangle width="190" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="statuses_data_note" value="&lt;b&gt;Seed Data (TaskStatus)&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font face=&quot;Courier New&quot;&gt;Id | Name       | SortOrder&lt;br&gt;---+------------+----------&lt;br&gt; 1 | Pending    |    1&lt;br&gt; 2 | InProgress |    2&lt;br&gt; 3 | Done       |    3&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;i&gt;Transition rule (app layer):&lt;br&gt;SortOrder must increase by 1&lt;br&gt;Pending → InProgress → Done&lt;br&gt;Direct Pending → Done is &lt;b&gt;forbidden&lt;/b&gt;&lt;/i&gt;" style="text;html=1;strokeColor=#9673a6;fillColor=#e1d5e7;align=left;verticalAlign=top;spacingLeft=10;spacingRight=8;spacingTop=6;overflow=hidden;rotatable=0;fontSize=11;" vertex="1" parent="1">
+                    <mxGeometry x="1180" y="310" width="420" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="statuses_data_arrow" value="" style="edgeStyle=orthogonalEdgeStyle;dashed=1;endArrow=open;endFill=0;strokeColor=#9673a6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="TASK_STATUSES_table" target="statuses_data_note">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="fk_statusid_rel" value="has status" style="edgeStyle=entityRelationEdgeStyle;startArrow=ERmany;endArrow=ERmandOne;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9673a6;fontStyle=2;fontSize=11;" edge="1" parent="1" source="TASKS_row_status" target="TASK_STATUSES_row_id">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
